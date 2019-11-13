@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itrip.dao.Linkuser.LinkuserMapper">
+<select id="getLinkuserBylinkUserName" resultType="com.itrip.beans.pojo.Linkuser">
+SELECT * FROM itrip_user_link_user
+WHERE 1=1
+<if test="linkUserName!=null and linkUserName!=''">
+    AND linkUserName LIKE CONCAT('%',#{linkUserName},'%')
+</if>
+LIMIT #{from},#{pageSize}
+</select>
+    <select id="getLinkuserBylinkUserNameCount" resultType="int">
+SELECT COUNT(1) FROM itrip_user_link_user
+        WHERE 1=1
+        <if test="linkUserName!=null and linkUserName!=''">
+            AND linkUserName LIKE CONCAT('%',#{linkUserName},'%')
+        </if>
+    </select>
+</mapper>
